@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "SELECT \n    * \nFROM \n    OPENROWSET\n        (\n            BULK 'https://rmpyru.dfs.core.windows.net/adventureworks/silver/AdventureWorks_Calendar/',\n            FORMAT = 'PARQUET'\n        ) as QUER1\n\n        ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "adventureworksDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
