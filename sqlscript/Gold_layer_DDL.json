@@ -1,8 +1,8 @@
 {
-	"name": "SQL script 1",
+	"name": "Gold_layer_DDL",
 	"properties": {
 		"content": {
-			"query": "SELECT \n    * \nFROM \n    OPENROWSET\n        (\n            BULK 'https://rmpyru.dfs.core.windows.net/adventureworks/silver/AdventureWorks_Calendar/',\n            FORMAT = 'PARQUET'\n        ) as QUER1\n\n        ",
+			"query": "create SCHEMA gold;\n\nCREATE VIEW gold.calendar\nAS\nSELECT \n    * \nFROM \n    OPENROWSET\n        (\n            BULK 'https://rmpyru.dfs.core.windows.net/adventureworks/silver/AdventureWorks_Calendar/',\n            FORMAT = 'PARQUET'\n        ) as QUER1;\n\nselect * from gold.calendar;",
 			"metadata": {
 				"language": "sql"
 			},
