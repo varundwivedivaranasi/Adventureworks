@@ -1,0 +1,24 @@
+{
+	"name": "Trig_Landing",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "GoldTrend_Master",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/landing/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/6dd4df93-5f83-4e41-b5fc-1cb3c9cd8bd2/resourceGroups/MY_AZURE_RES/providers/Microsoft.Storage/storageAccounts/rmpyru",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

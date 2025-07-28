@@ -1,0 +1,17 @@
+{
+	"name": "RMPTORRO",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "false",
+			"factoryStagingLSReferenceName": "",
+			"factoryStagingLSType": "",
+			"factoryStagingFolderPath": ""
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "60ca7e5f-6744-42fd-93eb-0eb83b11593f",
+		"tenantId": "535b3615-a214-4025-910b-5a248ca7b8bc"
+	}
+}

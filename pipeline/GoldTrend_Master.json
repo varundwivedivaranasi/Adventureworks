@@ -1,0 +1,52 @@
+{
+	"name": "GoldTrend_Master",
+	"properties": {
+		"activities": [
+			{
+				"name": "EP_LandingToSource",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "LandingToSourceMove",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EP_GoldTrendAnalysis",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EP_LandingToSource",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GoldTrendAnalysis",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": false
+				}
+			}
+		],
+		"folder": {
+			"name": "GoldTrendAnalysis"
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-07-20T13:00:28Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,27 @@
+{
+	"name": "ValidateActivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Validation",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "SourceFile",
+						"type": "DatasetReference"
+					},
+					"timeout": "0.12:00:00",
+					"sleep": 1
+				}
+			}
+		],
+		"folder": {
+			"name": "Misc"
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-07-21T16:45:17Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,63 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SilverFile",
+						"type": "DatasetReference"
+					},
+					"name": "Silver"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "GoldFile",
+						"type": "DatasetReference"
+					},
+					"name": "Gold"
+				}
+			],
+			"transformations": [
+				{
+					"name": "unpivot1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {country_demand_sector (tonnes)} as string,",
+				"          {2020} as string,",
+				"          {2021} as string,",
+				"          {2022} as string,",
+				"          {2023} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Silver",
+				"Silver unpivot(output(",
+				"          Year as string,",
+				"          {2020} as string",
+				"     ),",
+				"     ungroupBy({country_demand_sector (tonnes)}),",
+				"     lateral: true,",
+				"     ignoreNullPivots: false) ~> unpivot1",
+				"unpivot1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['GoldData.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Year,",
+				"          Total_Demand = {2020}",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> Gold"
+			]
+		}
+	}
+}

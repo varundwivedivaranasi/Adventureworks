@@ -1,0 +1,63 @@
+{
+	"name": "keyVaultTest",
+	"properties": {
+		"activities": [
+			{
+				"name": "getkeydata",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": true,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://adfkeyvalult.vault.azure.net/secrets/APIAuthKey/4b0145d39e9b431484f2e5f2193334c3?api-version=7.4",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net/"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getkeydata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": true,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "VaultKey",
+					"value": {
+						"value": "@activity('getkeydata').output.value",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"VaultKey": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Misc"
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-07-22T06:53:19Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
