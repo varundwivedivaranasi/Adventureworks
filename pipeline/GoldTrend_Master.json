@@ -67,8 +67,9 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"method": "POST",
 					"connectVia": {
-						"referenceName": "AutoResolveIntegrationRuntime",
+						"referenceName": "integrationRuntime1",
 						"type": "IntegrationRuntimeReference"
 					}
 				}
