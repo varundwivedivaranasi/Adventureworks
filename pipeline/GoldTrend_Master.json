@@ -40,6 +40,38 @@
 					},
 					"waitOnCompletion": false
 				}
+			},
+			{
+				"name": "SendEmail",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "EP_LandingToSource",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "EP_GoldTrendAnalysis",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					}
+				}
 			}
 		],
 		"folder": {
