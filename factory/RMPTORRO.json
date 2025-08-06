@@ -2,7 +2,7 @@
 	"name": "RMPTORRO",
 	"properties": {
 		"globalConfigurations": {
-			"PipelineBillingEnabled": "false",
+			"PipelineBillingEnabled": "true",
 			"factoryStagingLSReferenceName": "",
 			"factoryStagingLSType": "",
 			"factoryStagingFolderPath": ""
